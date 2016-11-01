@@ -57,3 +57,6 @@
 .gallery-item{
   width: 300px;
 }
+.gallery-nav > div {
+  cursor: pointer;
+}
