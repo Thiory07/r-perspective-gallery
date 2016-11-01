@@ -60,11 +60,23 @@
       <div class="gallery-footer">footer</div>
     </div>
 
-    <div class="gallery-nav">
-      <div class="gallery-next"></div>
-      <div class="gallery-preview"></div>
-    </div>
+
   </div>
-<script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+  <div class="gallery-nav">
+    <div class="gallery-next">></div>
+    <div class="gallery-preview"><</div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+  <script>
+  $(".gallery-nav").on("click", '.gallery-next', function (e) {
+    e.preventDefault();
+    $(".gallery-container").append($(".gallery-item").first());
+  });
+  $(".gallery-nav").on("click", '.gallery-preview', function (e) {
+    e.preventDefault();
+    console.log("this");
+    $(".gallery-container").prepend($(".gallery-item").last());
+  });
+  </script>
 </body>
 </html>
