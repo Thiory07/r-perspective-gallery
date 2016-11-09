@@ -68,15 +68,35 @@
   </div>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
   <script>
-  $(".gallery-nav").on("click", '.gallery-next', function (e) {
+  // jquery
+  /*$(".gallery-nav").on("click", '.gallery-next', function (e) {
     e.preventDefault();
     $(".gallery-container").append($(".gallery-item").first());
-  });
-  $(".gallery-nav").on("click", '.gallery-preview', function (e) {
+  }).on("click", '.gallery-preview', function (e) {
     e.preventDefault();
     console.log("this");
     $(".gallery-container").prepend($(".gallery-item").last());
-  });
+  });*/
+
+  //No jquery
+
+  var nextBtn = document.getElementsByClassName("gallery-next")[0];
+  var prevBtn = document.getElementsByClassName("gallery-preview")[0];
+  var container = document.getElementsByClassName("gallery-container")[0];
+  nextBtn.addEventListener("click", function(){ galleryChange(container, true) });
+  prevBtn.addEventListener("click", function(){ galleryChange(container, false) });
+
+
+  function galleryChange(container, next){
+    if(next){
+      var el = container.firstChild;
+      container.appendChild(el);
+    }else{
+      var el = container.lastChild;
+      container.insertBefore(el,container.firstChild);
+    }
+  }
+
   </script>
 </body>
 </html>
