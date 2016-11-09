@@ -66,6 +66,7 @@
     <div class="gallery-next">></div>
     <div class="gallery-preview"><</div>
   </div>
+  <script src="https://hammerjs.github.io/dist/hammer.js"></script>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
   <script>
   // jquery
@@ -85,6 +86,14 @@
   var container = document.getElementsByClassName("gallery-container")[0];
   nextBtn.addEventListener("click", function(){ galleryChange(container, true) });
   prevBtn.addEventListener("click", function(){ galleryChange(container, false) });
+  document.addEventListener("keydown", function(event) {
+    if(event.which == 37){
+      prevBtn.click();
+    }
+    if(event.which == 39){
+      nextBtn.click();
+    }
+  });
 
 
   function galleryChange(container, next){
@@ -97,6 +106,24 @@
     }
   }
 
+
+  // create a simple instance
+  // by default, it only adds horizontal recognizers
+  var mc = new Hammer(container);
+
+  // listen to events...
+  mc.add(new Hammer.Pan({ threshold: 500 }));
+
+  mc.on("panleft panright tap", function(ev) {
+      //container.textContent = ev.type +" gesture detected.";
+      console.log(ev.center);
+      if(ev.type == "panleft"){
+        nextBtn.click();
+      }
+      if(ev.type == "panright"){
+        prevBtn.click();
+      }
+  });
   </script>
 </body>
 </html>
